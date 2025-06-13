@@ -158,7 +158,7 @@ export default function Nav() {
                         <button onClick={toggleCart} className="relative items-center text-xl flex gap-2 font-medium">
                             <ShoppingCart className="h-7 w-7" /> Shopping Cart
                             {totalItems > 0 && (
-                                <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 bg-red-500 text-white text-[10px] rounded-full w-5 h-5 flex items-center justify-center shadow">
+                                <span className="absolute top-1 left-2 translate-x-1/2 -translate-y-1/2 bg-red-500 text-white text-[10px] rounded-full w-5 h-5 flex items-center justify-center shadow">
                                     {totalItems}
                                 </span>
                             )}

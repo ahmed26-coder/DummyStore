@@ -3,11 +3,18 @@
 import Image from "next/image";
 import { X, Trash2 } from "lucide-react";
 import { useCart } from "./CartContext";
-import Link from "next/link";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const CartDrawer = () => {
+    const router = useRouter();
     const { cart, isCartOpen, toggleCart, removeFromCart, increaseQuantity, decreaseQuantity } = useCart();
+
+        const handleCheckout = () => {
+        toast("Redirecting to Checkout...");
+        toggleCart();
+        router.push("/checkout");
+    };
 
     return (
         <>
@@ -53,7 +60,6 @@ const CartDrawer = () => {
                                         +
                                     </button>
                                 </div>
-
                             </div>
 
                             <button
@@ -64,7 +70,6 @@ const CartDrawer = () => {
                             >
                                 <Trash2 className="w-4 h-4 text-red-500" />
                             </button>
-
                         </div>
                     ))}
                 </div>
@@ -75,14 +80,12 @@ const CartDrawer = () => {
                     </p>
 
                     {cart.length > 0 && (
-                        <Link href="/checkout">
-                            <button
-                                onClick={() => toast("Redirecting to Checkout...")}
-                                className="mt-3 w-full bg-black text-white py-2 rounded hover:bg-white hover:text-black hover:border-black border-2"
-                            >
-                                Proceed to Checkout
-                            </button>
-                        </Link>
+                        <button
+                            onClick={handleCheckout}
+                            className="mt-3 w-full bg-black text-white py-2 rounded hover:bg-white hover:text-black hover:border-black border-2"
+                        >
+                            Proceed to Checkout
+                        </button>
                     )}
                 </div>
             </div>

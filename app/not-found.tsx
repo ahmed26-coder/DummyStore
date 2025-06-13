@@ -14,9 +14,9 @@ export default function NotFound() {
   ]
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center px-4 py-12">
+    <div className=" h-[80vh] my-10 flex items-center justify-center px-4 py-12">
       <Card className="max-w-3xl w-full overflow-hidden">
-        <div className="grid md:grid-cols-2">
+        <div className="grid md:grid-cols-2 ">
           <div className="bg-gradient-to-br from-purple-600 to-blue-600 p-8 text-white flex flex-col justify-between">
             <div className="space-y-4">
               <h1 className="text-7xl font-bold">404</h1>

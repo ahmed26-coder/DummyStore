@@ -15,7 +15,7 @@ export function Contacttop() {
                     We&#39;re here to help! Get in touch with our friendly support team for any questions, concerns, or feedback you
                     may have.
                 </p>
-                <div className="flex justify-center gap-4">
+                <div className="flex-wrap space-y-4 space-x-4 mx-auto justify-center gap-4">
                     <Badge className="bg-white text-green-600 text-lg px-6 py-2">
                         <Headphones className="w-8 h-8 mr-2" />
                         24/7 Support
@@ -78,7 +78,7 @@ export function Contactformpage() {
                         <div className="space-y-8">
                             <div>
                                 <h3 className="text-2xl font-bold mb-4">Contact Information</h3>
-                                <div className="space-y-4 grid grid-cols-2">
+                                <div className="space-y-4 grid grid-cols-1 md:grid-cols-2">
                                     <div className="flex items-start gap-3">
                                         <MapPin className="w-5 h-5 text-green-600 mt-1" />
                                         <div>

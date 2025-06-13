@@ -315,7 +315,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                                                 <Badge variant="secondary">In Cart</Badge>
                                             </div>
 
-                                            <div className="flex items-center justify-between">
+                                            <div className="flex-wrap space-y-3 items-center justify-between">
                                                 <div className="flex items-center gap-4">
                                                     <Image
                                                         src={item.thumbnail || "/placeholder.svg"}
@@ -332,7 +332,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                                                         </p>
                                                     </div>
                                                 </div>
-                                                <div className="flex gap-2">
+                                                <div className="flex gap-2 mx-auto">
                                                     <Button variant="outline" size="sm">
                                                         <Truck className="w-4 h-4 mr-1" />
                                                         Track

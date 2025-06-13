@@ -8,7 +8,7 @@ export function Footer() {
   const { toggleCart, cart } = useCart()
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-gray-900 border-t border-gray-800 text-white">
       <div className="container px-5 max-w-7xl xl:mx-auto py-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
@@ -70,27 +70,27 @@ export function Footer() {
             <h3 className="text-lg font-semibold mb-4">Categories</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/" className="text-gray-400 hover:text-white">
+                <Link href="/product" className="text-gray-400 hover:text-white">
                   Smartphones
                 </Link>
               </li>
               <li>
-                <Link href="/" className="text-gray-400 hover:text-white">
+                <Link href="/product" className="text-gray-400 hover:text-white">
                   Laptops
                 </Link>
               </li>
               <li>
-                <Link href="/" className="text-gray-400 hover:text-white">
+                <Link href="/product" className="text-gray-400 hover:text-white">
                   Fragrances
                 </Link>
               </li>
               <li>
-                <Link href="/" className="text-gray-400 hover:text-white">
+                <Link href="/product" className="text-gray-400 hover:text-white">
                   Skincare
                 </Link>
               </li>
               <li>
-                <Link href="/" className="text-gray-400 hover:text-white">
+                <Link href="/product" className="text-gray-400 hover:text-white">
                   Groceries
                 </Link>
               </li>
@@ -101,7 +101,7 @@ export function Footer() {
             <h3 className="text-lg font-semibold mb-4">Support</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/profile" className="text-gray-400 hover:text-white">
+                <Link href="/user" className="text-gray-400 hover:text-white">
                   My Account
                 </Link>
               </li>
