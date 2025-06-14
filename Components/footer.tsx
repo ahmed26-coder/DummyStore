@@ -3,8 +3,10 @@ import React from 'react'
 import Link from "next/link"
 import { Package, Facebook, Twitter, Instagram, Github } from "lucide-react"
 import { useCart } from "@/lib/CartContext"
+import { categories, links } from '@/constents'
 
 export function Footer() {
+
   const { toggleCart, cart } = useCart()
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
   return (
@@ -29,23 +31,22 @@ export function Footer() {
               <Github className="h-5 w-5 text-gray-400 hover:text-white cursor-pointer" />
             </div>
           </div>
-
           <div>
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
+              {links.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-gray-400 hover:text-white">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
               <li>
-                <Link href="/" className="text-gray-400 hover:text-white">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/product" className="text-gray-400 hover:text-white">
-                  Products
-                </Link>
-              </li>
-              <li>
-                <button onClick={toggleCart} className=" relative text-gray-400 hover:text-white">
-                  Cars
+                <button
+                  onClick={toggleCart}
+                  className="relative text-gray-400 hover:text-white"
+                >
+                  Cart
                   {totalItems > 0 && (
                     <span className="absolute -top-1 -right-6 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                       {totalItems}
@@ -53,47 +54,18 @@ export function Footer() {
                   )}
                 </button>
               </li>
-              <li>
-                <Link href="/about" className="text-gray-400 hover:text-white">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-gray-400 hover:text-white">
-                  Contact
-                </Link>
-              </li>
             </ul>
           </div>
-
           <div>
             <h3 className="text-lg font-semibold mb-4">Categories</h3>
             <ul className="space-y-2">
-              <li>
-                <Link href="/product" className="text-gray-400 hover:text-white">
-                  Smartphones
-                </Link>
-              </li>
-              <li>
-                <Link href="/product" className="text-gray-400 hover:text-white">
-                  Laptops
-                </Link>
-              </li>
-              <li>
-                <Link href="/product" className="text-gray-400 hover:text-white">
-                  Fragrances
-                </Link>
-              </li>
-              <li>
-                <Link href="/product" className="text-gray-400 hover:text-white">
-                  Skincare
-                </Link>
-              </li>
-              <li>
-                <Link href="/product" className="text-gray-400 hover:text-white">
-                  Groceries
-                </Link>
-              </li>
+              {categories.map((category) => (
+                <li key={category}>
+                  <Link href="/product" className="text-gray-400 hover:text-white">
+                    {category}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -111,13 +83,13 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <span className="text-gray-400">Help Center</span>
+                <span className="text-gray-400 hover:text-white">Help Center</span>
               </li>
               <li>
-                <span className="text-gray-400">Privacy Policy</span>
+                <span className="text-gray-400 hover:text-white">Privacy Policy</span>
               </li>
               <li>
-                <span className="text-gray-400">Terms of Service</span>
+                <span className="text-gray-400 hover:text-white">Terms of Service</span>
               </li>
             </ul>
           </div>

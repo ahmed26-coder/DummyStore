@@ -1,4 +1,4 @@
-import { ShoppingCart, Users, Award, Truck, Shield, Heart, Globe, Clock, MapPin, Phone, Mail, MessageCircle  } from "lucide-react"
+import { ShoppingCart, Users, Award, Truck, Shield, Heart, Globe, Clock, MapPin, Phone, Mail, MessageCircle } from "lucide-react"
 
 export const DataNav = [
     {
@@ -115,53 +115,67 @@ export const departments = [
     { name: "Press & Media", email: "press@dummystore.com" },
 ]
 
-   export const orders = [
+export const orders = [
     {
-      id: "DS-001",
-      date: "2024-01-15",
-      status: "Delivered",
-      total: 129.99,
-      items: 3,
-      image: "/placeholder.svg?height=60&width=60",
+        id: "DS-001",
+        date: "2024-01-15",
+        status: "Delivered",
+        total: 129.99,
+        items: 3,
+        image: "/placeholder.svg?height=60&width=60",
     },
     {
-      id: "DS-002",
-      date: "2024-01-10",
-      status: "Shipped",
-      total: 89.5,
-      items: 2,
-      image: "/placeholder.svg?height=60&width=60",
+        id: "DS-002",
+        date: "2024-01-10",
+        status: "Shipped",
+        total: 89.5,
+        items: 2,
+        image: "/placeholder.svg?height=60&width=60",
     },
     {
-      id: "DS-003",
-      date: "2024-01-05",
-      status: "Processing",
-      total: 199.99,
-      items: 1,
-      image: "/placeholder.svg?height=60&width=60",
+        id: "DS-003",
+        date: "2024-01-05",
+        status: "Processing",
+        total: 199.99,
+        items: 1,
+        image: "/placeholder.svg?height=60&width=60",
     },
-  ]
+]
 
-   export const wishlist = [
+export const wishlist = [
     {
-      id: 1,
-      title: "iPhone 15 Pro",
-      price: 999,
-      image: "/placeholder.svg?height=100&width=100",
-      inStock: true,
+        id: 1,
+        title: "iPhone 15 Pro",
+        price: 999,
+        image: "/placeholder.svg?height=100&width=100",
+        inStock: true,
     },
     {
-      id: 2,
-      title: "MacBook Air M2",
-      price: 1199,
-      image: "/placeholder.svg?height=100&width=100",
-      inStock: false,
+        id: 2,
+        title: "MacBook Air M2",
+        price: 1199,
+        image: "/placeholder.svg?height=100&width=100",
+        inStock: false,
     },
     {
-      id: 3,
-      title: "AirPods Pro",
-      price: 249,
-      image: "/placeholder.svg?height=100&width=100",
-      inStock: true,
+        id: 3,
+        title: "AirPods Pro",
+        price: 249,
+        image: "/placeholder.svg?height=100&width=100",
+        inStock: true,
     },
-  ]
+]
+
+export const links = [
+    { label: "Home", href: "/" },
+    { label: "Products", href: "/product" },
+    { label: "About", href: "/about" },
+    { label: "Contact", href: "/contact" },
+];
+export const categories = [
+    "Smartphones",
+    "Laptops",
+    "Fragrances",
+    "Skincare",
+    "Groceries",
+];
