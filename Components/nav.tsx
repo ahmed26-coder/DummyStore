@@ -150,9 +150,8 @@ export default function Nav() {
 
                     <div className=" mt-10 lg:hidden space-y-5 flex relative flex-col">
                         <Link href="/user">
-                            <button className=" font-medium flex gap-2.5 items-center text-xl">
+                            <button  onClick={closeMenu} className=" font-medium flex gap-2.5 items-center text-xl">
                                 <User className=" h-7 w-7" /> Account
-
                             </button>
                         </Link>
                         <button onClick={toggleCart} className="relative items-center text-xl flex gap-2 font-medium">
