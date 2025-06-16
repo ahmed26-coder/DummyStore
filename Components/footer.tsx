@@ -11,8 +11,8 @@ export function Footer() {
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
   return (
     <footer className="bg-gray-900 border-t border-gray-800 text-white">
-      <div className="container px-5 max-w-7xl xl:mx-auto py-10">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="container px-5 max-w-7xl xl:mx-auto py-5">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
           <div className="space-y-4">
             <Link href="/" className="flex items-center space-x-2">
               <div className="bg-pink-600 text-white p-2 rounded-lg">
@@ -20,7 +20,7 @@ export function Footer() {
               </div>
               <span className="text-xl font-bold">DummyStore</span>
             </Link>
-            <p className="text-gray-400">
+            <p className="text-gray-400 sm:text-base text-sm">
               Your ultimate shopping destination powered by DummyJSON API. Discover amazing products and connect with
               our community.
             </p>
@@ -95,7 +95,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+        <div className="border-t border-gray-800 mt-8 pt-4 text-center text-gray-400">
           <p>&copy; 2024 DummyStore. All rights reserved. Powered by DummyJSON API.</p>
         </div>
       </div>
