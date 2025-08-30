@@ -29,7 +29,8 @@ type UserProfile = {
     image?: string;
 };
 
-const createGuestUser = () => ({
+const createGuestUser = (): UserProfile => ({
+    id: Date.now().toString(),
     firstName: "Guest",
     lastName: "User",
     email: `guest${Date.now()}@guest.com`,
@@ -40,17 +41,20 @@ const createGuestUser = () => ({
     city: "",
     state: "",
     postalCode: "",
-    country: ""
+    country: "",
+    image: ""
 });
+
 
 export default function ProfilePage() {
     const { cart: cartItems } = useCart();
     const [isGuest, setIsGuest] = useState(true);
     const [activeTab, setActiveTab] = useState("profile");
-    const [originalUser, setOriginalUser] = useState<any>(createGuestUser());
+    const [originalUser, setOriginalUser] = useState<UserProfile>(() => createGuestUser());
     const [isEditing, setIsEditing] = useState(false);
     const [user, setUser] = useState<UserProfile | null>(null);
     const [loading, setLoading] = useState(true);
+
 
     // Function to safely access localStorage
     const getFromLocalStorage = (key: string): string | null => {
@@ -81,7 +85,7 @@ export default function ProfilePage() {
 
     useEffect(() => {
         const existingUserId = getFromLocalStorage("userId");
-        
+
         async function fetchOrCreateUser() {
             try {
                 let data;
@@ -120,7 +124,7 @@ export default function ProfilePage() {
                     console.log('User created successfully:', data);
                     setToLocalStorage("userId", data.id);
                 }
-                
+
                 setUser(data);
                 setOriginalUser(data);
                 if (data.type !== "guest") setIsGuest(false);
@@ -354,50 +358,50 @@ export default function ProfilePage() {
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div className="space-y-3">
                                         <Label htmlFor="firstName">First Name</Label>
-                                        <Input 
-                                            id="firstName" 
-                                            value={user.firstName || ""} 
-                                            onChange={handleChange} 
-                                            disabled={!isEditing} 
+                                        <Input
+                                            id="firstName"
+                                            value={user.firstName || ""}
+                                            onChange={handleChange}
+                                            disabled={!isEditing}
                                         />
                                     </div>
                                     <div className="space-y-3">
                                         <Label htmlFor="lastName">Last Name</Label>
-                                        <Input 
-                                            id="lastName" 
-                                            value={user.lastName || ""} 
-                                            onChange={handleChange} 
-                                            disabled={!isEditing} 
+                                        <Input
+                                            id="lastName"
+                                            value={user.lastName || ""}
+                                            onChange={handleChange}
+                                            disabled={!isEditing}
                                         />
                                     </div>
                                 </div>
                                 <div className="space-y-3">
                                     <Label htmlFor="email">Email Address</Label>
-                                    <Input 
-                                        id="email" 
+                                    <Input
+                                        id="email"
                                         type="email"
-                                        value={user.email || ""} 
-                                        onChange={handleChange} 
-                                        disabled={!isEditing} 
+                                        value={user.email || ""}
+                                        onChange={handleChange}
+                                        disabled={!isEditing}
                                     />
                                 </div>
                                 <div className="space-y-3">
                                     <Label htmlFor="phone">Phone Number</Label>
-                                    <Input 
-                                        id="phone" 
-                                        value={user.phone || ""} 
-                                        onChange={handleChange} 
-                                        disabled={!isEditing} 
+                                    <Input
+                                        id="phone"
+                                        value={user.phone || ""}
+                                        onChange={handleChange}
+                                        disabled={!isEditing}
                                     />
                                 </div>
                                 <div className="space-y-3">
                                     <Label htmlFor="birthDate">Birth Date</Label>
-                                    <Input 
-                                        id="birthDate" 
-                                        type="date" 
-                                        value={user.birthDate || ""} 
-                                        onChange={handleChange} 
-                                        disabled={!isEditing} 
+                                    <Input
+                                        id="birthDate"
+                                        type="date"
+                                        value={user.birthDate || ""}
+                                        onChange={handleChange}
+                                        disabled={!isEditing}
                                     />
                                 </div>
                                 <Separator />
@@ -406,50 +410,50 @@ export default function ProfilePage() {
                                     <div className="space-y-4">
                                         <div className="space-y-3">
                                             <Label htmlFor="address">Street Address</Label>
-                                            <Input 
-                                                id="address" 
-                                                value={user.address || ""} 
-                                                onChange={handleChange} 
-                                                disabled={!isEditing} 
+                                            <Input
+                                                id="address"
+                                                value={user.address || ""}
+                                                onChange={handleChange}
+                                                disabled={!isEditing}
                                             />
                                         </div>
                                         <div className="grid md:grid-cols-2 gap-4">
                                             <div className="space-y-3">
                                                 <Label htmlFor="city">City</Label>
-                                                <Input 
-                                                    id="city" 
-                                                    value={user.city || ""} 
-                                                    onChange={handleChange} 
-                                                    disabled={!isEditing} 
+                                                <Input
+                                                    id="city"
+                                                    value={user.city || ""}
+                                                    onChange={handleChange}
+                                                    disabled={!isEditing}
                                                 />
                                             </div>
                                             <div className="space-y-3">
                                                 <Label htmlFor="state">State</Label>
-                                                <Input 
-                                                    id="state" 
-                                                    value={user.state || ""} 
-                                                    onChange={handleChange} 
-                                                    disabled={!isEditing} 
+                                                <Input
+                                                    id="state"
+                                                    value={user.state || ""}
+                                                    onChange={handleChange}
+                                                    disabled={!isEditing}
                                                 />
                                             </div>
                                         </div>
                                         <div className="grid md:grid-cols-2 gap-4">
                                             <div className="space-y-3">
                                                 <Label htmlFor="postalCode">Postal Code</Label>
-                                                <Input 
-                                                    id="postalCode" 
-                                                    value={user.postalCode || ""} 
-                                                    onChange={handleChange} 
-                                                    disabled={!isEditing} 
+                                                <Input
+                                                    id="postalCode"
+                                                    value={user.postalCode || ""}
+                                                    onChange={handleChange}
+                                                    disabled={!isEditing}
                                                 />
                                             </div>
                                             <div className="space-y-3">
                                                 <Label htmlFor="country">Country</Label>
-                                                <Input 
-                                                    id="country" 
-                                                    value={user.country || ""} 
-                                                    onChange={handleChange} 
-                                                    disabled={!isEditing} 
+                                                <Input
+                                                    id="country"
+                                                    value={user.country || ""}
+                                                    onChange={handleChange}
+                                                    disabled={!isEditing}
                                                 />
                                             </div>
                                         </div>

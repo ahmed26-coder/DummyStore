@@ -241,10 +241,6 @@
   }
 }
 
-.bonnerimg{
-  background-image: url(../public/bennorhome.webp);
-  background-size: cover;
-}
 .bonnerimgabout{
     background-image: url(../public/bennorabout.webp);
     background-size: cover;
