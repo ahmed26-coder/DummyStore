@@ -11,7 +11,7 @@ import Image from "next/image";
 
 function HeroSlider() {
   return (
-    <div className="hero w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 py-10">
+    <div className="hero w-full h-fit bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 py-10">
       <div className="container mx-auto px-4">
         <Swiper
           loop={true}
@@ -51,6 +51,7 @@ function HeroSlider() {
                   alt="slider hero 1"
                   width={900}
                   height={600}
+                  priority
                   className="object-contain"
                 />
               </div>
@@ -81,6 +82,7 @@ function HeroSlider() {
                   alt="slider hero 2"
                   width={900}
                   height={600}
+                  priority
                   className="object-contain"
                 />
               </div>
@@ -111,6 +113,7 @@ function HeroSlider() {
                   alt="slider hero 3"
                   width={900}
                   height={600}
+                  priority
                   className="object-contain"
                 />
               </div>
