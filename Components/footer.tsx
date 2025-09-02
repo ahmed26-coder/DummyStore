@@ -1,7 +1,8 @@
 "use client"
+import Image from 'next/image'
 import React from 'react'
 import Link from "next/link"
-import { Package, Facebook, Twitter, Instagram, Github } from "lucide-react"
+import { Facebook, Twitter, Instagram, Github } from "lucide-react"
 import { useCart } from "@/lib/CartContext"
 import { categories, links } from '@/constents'
 
@@ -15,13 +16,11 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
           <div className="space-y-4">
             <Link href="/" className="flex items-center space-x-2">
-              <div className="bg-pink-600 text-white p-2 rounded-lg">
-                <Package className="h-6 w-6" />
-              </div>
-              <span className="text-xl font-bold">DummyStore</span>
+              <Image src="/icon.png" alt="Logo" width={40} height={10} />
+              <span className="text-xl font-bold">ShraraStore</span>
             </Link>
             <p className="text-gray-400 sm:text-base text-sm">
-              Your ultimate shopping destination powered by DummyJSON API. Discover amazing products and connect with
+              Your ultimate shopping destination powered by ShraraJSON API. Discover amazing products and connect with
               our community.
             </p>
             <div className="flex space-x-4">
@@ -96,7 +95,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-4 text-center text-gray-400">
-          <p>&copy; 2024 DummyStore. All rights reserved. Powered by DummyJSON API.</p>
+          <p>&copy; 2024 ShraraStore. All rights reserved. Powered by ShraraJSON API.</p>
         </div>
       </div>
     </footer>

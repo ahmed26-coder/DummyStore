@@ -11,7 +11,7 @@ import Image from "next/image";
 
 function HeroSlider() {
   return (
-    <div className="hero w-full h-fit bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 py-10">
+    <div className="hero w-full h-fit bg-white py-10">
       <div className="container mx-auto px-4">
         <Swiper
           loop={true}
@@ -23,23 +23,23 @@ function HeroSlider() {
             clickable: true,
           }}
           modules={[Pagination, Autoplay]}
-          className="rounded-2xl overflow-hidden shadow-xl"
+          className="rounded-md overflow-hidden"
         >
           {/* Slide 1 */}
           <SwiperSlide>
-            <div className="flex flex-col md:flex-row items-center justify-between bg-white/10 backdrop-blur-md p-6 md:p-12">
+            <div className="flex flex-col md:flex-row items-center justify-between bg-gray-100 p-6 md:p-12">
               {/* Text */}
-              <div className="max-w-lg text-white">
-                <h4 className="text-lg font-light opacity-80">Introducing the new</h4>
+              <div className="max-w-lg">
+                <h4 className="text-lg font-light opacity-80 text-gray-700">Introducing the new</h4>
                 <h3 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
                   Microsoft Xbox <br /> 360 Controller
                 </h3>
-                <p className="text-lg opacity-90 mb-6">
+                <p className="text-lg opacity-90 mb-6 text-gray-700">
                   Windows Xp/10/7/8 Ps3, Tv Box
                 </p>
                 <Link
-                  href="/"
-                  className="inline-block bg-white text-indigo-600 px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-gray-100 transition-transform transform hover:-translate-y-1"
+                  href="/product"
+                  className="inline-block bg-white text-blue-500 px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-gray-50 transition-transform transform hover:-translate-y-1"
                 >
                   Shop Now
                 </Link>
@@ -49,8 +49,8 @@ function HeroSlider() {
                 <Image
                   src="/banner_Hero1.png"
                   alt="slider hero 1"
-                  width={900}
-                  height={600}
+                  width={1500}
+                  height={1000}
                   priority
                   className="object-contain"
                 />
@@ -60,18 +60,18 @@ function HeroSlider() {
 
           {/* Slide 2 */}
           <SwiperSlide>
-            <div className="flex flex-col md:flex-row items-center justify-between bg-white/10 backdrop-blur-md p-6 md:p-12">
-              <div className="max-w-lg text-white">
-                <h4 className="text-lg font-light opacity-80">Introducing the new</h4>
+            <div className="flex flex-col md:flex-row items-center justify-between bg-gray-50 p-6 md:p-12">
+              <div className="max-w-lg ">
+                <h4 className="text-lg font-light opacity-80 text-gray-700">Introducing the new</h4>
                 <h3 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
                   Microsoft Xbox <br /> 360 Controller
                 </h3>
-                <p className="text-lg opacity-90 mb-6">
+                <p className="text-lg opacity-90 mb-6 text-gray-700">
                   Windows Xp/10/7/8 Ps3, Tv Box
                 </p>
                 <Link
-                  href="/"
-                  className="inline-block bg-white text-indigo-600 px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-gray-100 transition-transform transform hover:-translate-y-1"
+                  href="/product"
+                  className="inline-block bg-white text-blue-500 px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-gray-50 transition-transform transform hover:-translate-y-1"
                 >
                   Shop Now
                 </Link>
@@ -80,8 +80,8 @@ function HeroSlider() {
                 <Image
                   src="/banner_Hero2.png"
                   alt="slider hero 2"
-                  width={900}
-                  height={600}
+                  width={1500}
+                  height={1000}
                   priority
                   className="object-contain"
                 />
@@ -91,18 +91,18 @@ function HeroSlider() {
 
           {/* Slide 3 */}
           <SwiperSlide>
-            <div className="flex flex-col md:flex-row items-center justify-between bg-white/10 backdrop-blur-md p-6 md:p-12">
-              <div className="max-w-lg text-white">
-                <h4 className="text-lg font-light opacity-80">Introducing the new</h4>
+            <div className="flex flex-col md:flex-row items-center justify-between bg-gray-50 p-6 md:p-12">
+              <div className="max-w-lg ">
+                <h4 className="text-lg font-light opacity-80 text-gray-700">Introducing the new</h4>
                 <h3 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
                   Microsoft Xbox <br /> 360 Controller
                 </h3>
-                <p className="text-lg opacity-90 mb-6">
+                <p className="text-lg opacity-90 mb-6 text-gray-700">
                   Windows Xp/10/7/8 Ps3, Tv Box
                 </p>
                 <Link
-                  href="/"
-                  className="inline-block bg-white text-indigo-600 px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-gray-100 transition-transform transform hover:-translate-y-1"
+                  href="/product"
+                  className="inline-block bg-white text-blue-500 px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-gray-50 transition-transform transform hover:-translate-y-1"
                 >
                   Shop Now
                 </Link>
@@ -111,8 +111,8 @@ function HeroSlider() {
                 <Image
                   src="/banner_Hero3.png"
                   alt="slider hero 3"
-                  width={900}
-                  height={600}
+                  width={1500}
+                  height={1000}
                   priority
                   className="object-contain"
                 />
@@ -127,12 +127,12 @@ function HeroSlider() {
         .swiper-pagination-bullet {
           width: 10px;
           height: 10px;
-          background: rgba(255, 255, 255, 0.6);
+          background: #D1D5DB;
           opacity: 1;
           transition: all 0.3s ease;
         }
         .swiper-pagination-bullet-active {
-          background: #ffffff;
+          background: #3B82F6;
           transform: scale(1.2);
           box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
         }

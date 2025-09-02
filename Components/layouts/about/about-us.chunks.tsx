@@ -16,12 +16,12 @@ export function Aboutustop() {
         <>
             <section className=" bonnerimgabout text-black bg-gradient-to-r from-blue-600 to-purple-600 py-30">
                 <div className="container max-w-7xl mx-auto px-4 text-center">
-                    <h1 className="text-5xl font-bold mb-6">About DummyStore</h1>
+                    <h1 className="text-5xl font-bold mb-6">About ShraraStore</h1>
                     <p className="text-xl mb-8 max-w-3xl mx-auto">
                         We&#39;re on a mission to revolutionize online shopping by providing the best products, exceptional service, and
                         an unmatched customer experience powered by cutting-edge technology.
                     </p>
-                    <Badge className="bg-white text-pink-600 text-lg px-6 py-2">Powered by DummyJSON API</Badge>
+                    <Badge className="bg-white text-pink-600 text-lg px-6 py-2">Powered by ShraraJSON API</Badge>
                 </div>
             </section>
             <section className="py-16 bg-gray-50">
@@ -53,7 +53,7 @@ export function Aboutusimg() {
                         <h2 className="text-3xl font-bold mb-6">Our Story</h2>
                         <div className="space-y-4 text-gray-700">
                             <p>
-                                Founded in 2020, DummyStore began as a simple idea: to create an online marketplace that puts
+                                Founded in 2020, ShraraStore began as a simple idea: to create an online marketplace that puts
                                 customers first. What started as a small team of passionate entrepreneurs has grown into a global
                                 platform serving millions of customers worldwide.
                             </p>
@@ -105,7 +105,7 @@ export function Aboutusfeatures() {
         <section className="py-16 bg-gray-50">
             <div className="container max-w-7xl mx-auto px-4">
                 <div className="text-center mb-12">
-                    <h2 className="text-3xl font-bold mb-4">Why Choose DummyStore?</h2>
+                    <h2 className="text-3xl font-bold mb-4">Why Choose ShraraStore?</h2>
                     <p className="text-gray-600 max-w-2xl mx-auto">
                         We&#39;re committed to providing you with the best shopping experience possible
                     </p>
@@ -138,7 +138,7 @@ export function Aboutusteam() {
             <div className="container max-w-7xl mx-auto px-4">
                 <div className="text-center mb-12">
                     <h2 className="text-3xl font-bold mb-4">Meet Our Team</h2>
-                    <p className="text-gray-600 max-w-2xl mx-auto">The passionate people behind DummyStore&#39;s success</p>
+                    <p className="text-gray-600 max-w-2xl mx-auto">The passionate people behind ShraraStore&#39;s success</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -208,7 +208,7 @@ export function Aboutvalues() {
                 <div className="container mx-auto px-4 text-center">
                     <h2 className="text-3xl font-bold mb-4">Ready to Join Our Community?</h2>
                     <p className="text-xl mb-8 text-gray-600 max-w-2xl mx-auto">
-                        Experience the difference of shopping with DummyStore. Join millions of satisfied customers today.
+                        Experience the difference of shopping with ShraraStore. Join millions of satisfied customers today.
                     </p>
                     <div className="flex gap-4 justify-center">
                         <Link href="/product">

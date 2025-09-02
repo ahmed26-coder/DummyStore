@@ -1,18 +1,23 @@
 "use client"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
 import React, { useEffect, useState } from 'react'
 import Link from "next/link"
-import { Menu, Package, ShoppingCart, User, X } from "lucide-react"
+import { Heart, Menu, ShoppingCart, User, X } from "lucide-react"
 import { cn } from "../lib/utils"
 import { DataNav } from "@/constents"
 import ProductSearch from "./ProductSearch"
 import { useCart } from "@/lib/CartContext"
+import { useFavorites } from "./layouts/favorites/favorites.client"
 
 
 export default function Nav() {
     const [isOpen, setIsOpen] = useState(false)
     const [showNav, setShowNav] = useState(true);
     const { toggleCart, cart } = useCart()
+    const { favorites } = useFavorites()
+    const totalFavorites = favorites.length
+
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
     const pathname = usePathname()
@@ -56,10 +61,8 @@ export default function Nav() {
         <div className="container px-5 max-w-7xl xl:mx-auto py-2">
             <div className="flex items-center justify-between h-16">
                 <Link href="/" className="flex items-center space-x-2">
-                    <div className="bg-pink-600 text-white p-2 rounded-lg">
-                        <Package className="h-6 w-6" />
-                    </div>
-                    <span className="text-xl font-bold">DummyStore</span>
+                    <Image src="/icon.png" alt="Logo" width={40} height={10} />
+                    <span className="text-xl font-bold">ShraraStore</span>
                 </Link>
                 <div className="lg:hidden">
                     <button onClick={toggleMenu} className="p-2">
@@ -78,8 +81,8 @@ export default function Nav() {
                                 key={index}
                                 href={item.link}
                                 className={cn(
-                                    "px-3 py-2 text-lg hover:text-pink-600 font-medium transition-colors",
-                                    pathname === item.link ? "underline text-pink-600" : ""
+                                    "px-3 py-2 text-lg hover:text-[#3B82F6] font-medium transition-colors",
+                                    pathname === item.link ? "underline text-[#3B82F6]" : ""
                                 )}
                             >
                                 {item.title}
@@ -94,17 +97,26 @@ export default function Nav() {
                     <Link href="/user">
                         <User className="h-7 w-7" />
                     </Link>
-                    <div className="relative w-8 h-8">
-                        <button onClick={toggleCart} className="w-full h-full">
+                    <div onClick={toggleCart} className="relative w-8 h-8">
+                        <button className="w-full h-full">
                             <ShoppingCart className="h-7 w-7" />
                         </button>
                         {totalItems > 0 && (
-                            <span className="absolute top-1 right-1 translate-x-1/2 -translate-y-1/2 bg-red-500 text-white text-[10px] rounded-full w-5 h-5 flex items-center justify-center shadow">
+                            <span className="absolute top-1 right-1 translate-x-1/2 -translate-y-1/2 bg-[#3B82F6] text-white text-[10px] rounded-full w-5 h-5 flex items-center justify-center shadow">
                                 {totalItems}
                             </span>
                         )}
                     </div>
+                    <Link href="/favorites" aria-label="Favorites" className="relative w-8 h-8">
+                        <Heart className="h-7 w-7" />
 
+
+                        {totalFavorites > 0 && (
+                            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] rounded-full min-w-5 h-5 px-1 flex items-center justify-center shadow">
+                                {totalFavorites}
+                            </span>
+                        )}
+                    </Link>
                 </div>
             </div>
             <div className="mt-2 w-full lg:hidden">
@@ -122,10 +134,8 @@ export default function Nav() {
                 >
                     <div className="flex justify-between mb-4">
                         <Link href="/" className="flex items-center space-x-2">
-                            <div className="bg-pink-600 text-white p-2 rounded-lg">
-                                <Package className="h-6 w-6" />
-                            </div>
-                            <span className="text-xl font-bold">DummyStore</span>
+                            <Image src="/icon.png" alt="Logo" width={40} height={10} />
+                            <span className="text-xl font-bold">ShraraStore</span>
                         </Link>
                         <button onClick={closeMenu} className=" hover:text-red-500">
                             <X className="w-8 h-8" />
@@ -150,7 +160,7 @@ export default function Nav() {
 
                     <div className=" mt-10 lg:hidden space-y-5 flex relative flex-col">
                         <Link href="/user">
-                            <button  onClick={closeMenu} className=" font-medium flex gap-2.5 items-center text-xl">
+                            <button onClick={closeMenu} className=" font-medium flex gap-2.5 items-center text-xl">
                                 <User className=" h-7 w-7" /> Account
                             </button>
                         </Link>
@@ -162,6 +172,17 @@ export default function Nav() {
                                 </span>
                             )}
                         </button>
+                        <Link href="/favorites" aria-label="Favorites" className="relative flex items-center gap-2 w-auto">
+                            <div className="relative">
+                                <Heart className="h-6 w-6" />
+                                {totalFavorites > 0 && (
+                                    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] rounded-full min-w-5 h-5 px-1 flex items-center justify-center shadow">
+                                        {totalFavorites}
+                                    </span>
+                                )}
+                            </div>
+                            <span className="text-xl font-medium">Favorites</span>
+                        </Link>
                     </div>
                 </div>
             </div>

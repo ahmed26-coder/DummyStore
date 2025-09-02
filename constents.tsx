@@ -108,11 +108,11 @@ export const contactMethods = [
 ]
 
 export const departments = [
-    { name: "General Support", email: "support@dummystore.com" },
-    { name: "Sales Inquiries", email: "sales@dummystore.com" },
-    { name: "Technical Support", email: "tech@dummystore.com" },
-    { name: "Partnerships", email: "partners@dummystore.com" },
-    { name: "Press & Media", email: "press@dummystore.com" },
+    { name: "General Support", email: "support@ShraraStore.com" },
+    { name: "Sales Inquiries", email: "sales@ShraraStore.com" },
+    { name: "Technical Support", email: "tech@ShraraStore.com" },
+    { name: "Partnerships", email: "partners@ShraraStore.com" },
+    { name: "Press & Media", email: "press@ShraraStore.com" },
 ]
 
 export const orders = [

@@ -16,9 +16,7 @@ const nextConfig = {
       },
     ],
   },
-    experimental: {
-    turbo: false,
-  },
+turbopack: {},
 }
 
 module.exports = nextConfig

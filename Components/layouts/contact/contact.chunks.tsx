@@ -103,14 +103,14 @@ export function Contactformpage() {
                                         <Mail className="w-5 h-5 text-green-600 mt-1" />
                                         <div>
                                             <p className="font-medium">Email</p>
-                                            <p className="text-gray-600">support@dummystore.com</p>
+                                            <p className="text-gray-600">support@ShraraStore.com</p>
                                         </div>
                                     </div>
                                     <div className="flex items-center gap-3">
                                         <Globe className="w-5 h-5 text-green-600 mt-1" />
                                         <div>
                                             <p className="font-medium">Website</p>
-                                            <p className="text-gray-600">www.dummystore.com</p>
+                                            <p className="text-gray-600">www.ShraraStore.com</p>
                                         </div>
                                     </div>
                                 </div>

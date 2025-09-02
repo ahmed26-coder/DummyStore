@@ -4,13 +4,14 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Star, ShoppingCart, Heart, Share2, ArrowLeft, Minus, Plus } from "lucide-react"
+import { Star, ShoppingCart, Share2, ArrowLeft, Minus, Plus, HeartIcon } from "lucide-react"
 import { toast } from "sonner"
 import { Button } from "@/Components/ui/button"
 import { Badge } from "@/Components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/Components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/Components/ui/tabs"
 import { useCart } from "@/lib/CartContext"
+import { useFavorites } from "../favorites/favorites.client"
 
 
 interface Product {
@@ -37,7 +38,7 @@ interface Product {
 
 export default function ProductClient({ id }: { id: string }) {
     const { addToCart } = useCart()
-    const [isLiked, setIsLiked] = useState(false);
+    const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
     const [product, setProduct] = useState<Product | null>(null)
     const [loading, setLoading] = useState(true)
     const [selectedImage, setSelectedImage] = useState(0)
@@ -228,14 +229,31 @@ export default function ProductClient({ id }: { id: string }) {
                                 <ShoppingCart className="w-5 h-5 mr-2" />
                                 Add to Cart
                             </Button>
-                            <Button
-                                size="lg"
-                                variant="outline"
-                                onClick={() => setIsLiked((prev) => !prev)}
-                                className={isLiked ? "text-red-500 border-red-500" : ""}
-                            >
-                                <Heart className="w-5 h-5" fill={isLiked ? "#ef4444" : "none"} />
-                            </Button>
+                      <span
+                        onClick={() => {
+                          const productTitle = product.title || "Product";
+
+                          if (isFavorite(String(product.id))) {
+                            removeFromFavorites(String(product.id));
+                            toast.error(`${productTitle} removed from favorites❤️`);
+                          } else {
+                            addToFavorites({
+                              id: String(product.id),
+                              title: productTitle,
+                              price: product.price || 0,
+                              thumbnail: product.thumbnail || "/placeholder.svg",
+                            });
+                            toast.success(`${productTitle} added to favorites❤️`);
+                          }
+                        }}
+                        className={`w-10 h-10 rounded-full flex items-center justify-center cursor-pointer transition
+    bg-gray-100 hover:bg-gray-300 hover:text-white`}
+                      >
+                        <HeartIcon
+                          className={`w-5 h-5 transition ${isFavorite(String(product.id)) ? "text-red-500" : "text-black"
+                            }`}
+                        />
+                      </span>
 
                             <Button
                                 size="lg"

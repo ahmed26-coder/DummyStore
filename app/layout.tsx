@@ -6,6 +6,7 @@ import { Footer } from "@/Components/footer";
 import { CartProvider } from "@/lib/CartContext";
 import CartDrawer from "@/lib/CartDrawer";
 import ClientToaster from "@/lib/client-toaster";
+import { FavoriteProvider } from "@/Components/layouts/favorites/favorites.client";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -24,11 +25,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={`min-h-screen flex flex-col ${inter.className}`}>
         <CartProvider>
-          <Nav />
-          <main className="flex-1">{children}</main>
-          <CartDrawer />
-          <Footer />
-          <ClientToaster />
+          <FavoriteProvider>
+            <Nav />
+            <main className="flex-1">{children}</main>
+            <CartDrawer />
+            <Footer />
+            <ClientToaster />
+          </FavoriteProvider>
         </CartProvider>
       </body>
     </html>
