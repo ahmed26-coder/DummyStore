@@ -174,7 +174,7 @@ export default function ProductGrid() {
           {Array.from({ length: 5 }).map((_, i) => (
             <div
               key={i}
-              className="w-[235px] h-[300px] bg-white border border-gray-200 rounded-md p-4
+              className=" w-full lg:w-[235px] h-[300px] bg-white border border-gray-200 rounded-md p-4
           animate-pulse flex flex-col gap-4"
             >
               <div className="h-[180px] w-full bg-gray-200 rounded-md" />

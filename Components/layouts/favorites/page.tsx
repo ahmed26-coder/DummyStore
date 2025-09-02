@@ -27,7 +27,7 @@ export default function FavoritesPage() {
         {favorites.map((item) => (
           <div
             key={item.id}
-            className="group relative w-[235px] bg-white border border-gray-200 
+            className="group relative w-full lg:w-[235px] bg-white border border-gray-200 
               rounded-md p-4 overflow-hidden transition duration-300
               hover:-translate-y-2 hover:shadow-lg hover:border-[#3B82F6]"
           >
