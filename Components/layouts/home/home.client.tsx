@@ -69,7 +69,7 @@ export default function Homeproduct() {
   }
 
   return (
-    <section className="container mx-auto px-6">
+    <section className="container max-w-[1350px] mx-auto px-6">
       {categories.map((category) => (
         <div key={category} className="my-12">
           <h2 className="text-3xl font-bold text-[#3B82F6] capitalize">
