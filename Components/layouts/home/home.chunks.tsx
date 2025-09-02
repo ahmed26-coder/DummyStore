@@ -5,7 +5,9 @@ import React from 'react'
 
 export function Hometop() {
     return (
+        <div className=" max-w-6xl">
             <HeroSlider />
+        </div>
     )
 }
 

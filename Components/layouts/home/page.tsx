@@ -6,7 +6,7 @@ import { CustomerReviewsMarquee } from '@/Components/customer-reviews-marquee'
 
 export default function Home() {
   return (
-    <div>
+    <div className=" max-w-7xl">
       <Hometop />
       <Homeproduct />
       <CustomerReviewsMarquee />
