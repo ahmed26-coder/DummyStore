@@ -36,7 +36,7 @@ export function Aboutusimg() {
         <section className="py-16">
             <div className="container max-w-7xl mx-auto px-4">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
-                    <div>
+                    <div className="w-full">
                         <h2 className="text-3xl font-bold mb-6">Our Story</h2>
                         <div className="space-y-4 text-gray-700">
                             <p>
@@ -46,7 +46,7 @@ export function Aboutusimg() {
                             </p>
                             <p>
                                 We believe that shopping should be easy, enjoyable, and accessible to everyone. That&#39;s why we&#39;ve built
-                                our platform using the latest technologies, including the powerful DummyJSON API, to provide you with
+                                our platform using the latest technologies, including the powerful ShraraJSON API, to provide you with
                                 real-time product information, seamless transactions, and personalized experiences.
                             </p>
                             <p>
@@ -55,7 +55,7 @@ export function Aboutusimg() {
                                 and customer satisfaction drives everything we do.
                             </p>
                         </div>
-                        <div className="mt-8 flex items-center gap-4">
+                        <div className="mt-5 flex items-center gap-4">
                             <CheckCircle className="w-6 h-6 text-green-600" />
                             <span className="text-lg font-medium">Trusted by 500K+ customers</span>
                         </div>
