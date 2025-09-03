@@ -12,8 +12,8 @@ import { FavoriteProvider } from "@/components/layouts/favorites/favorites.clien
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "DummyStore - Your Ultimate Shopping Destination",
-  description: "Discover amazing products powered by DummyJSON API",
+  title: "ShraraStore - Your Ultimate Shopping Destination",
+  description: "Discover amazing products powered by ShraraJSON API",
 };
 
 export default function RootLayout({
