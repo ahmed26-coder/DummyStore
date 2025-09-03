@@ -66,8 +66,9 @@ export function Aboutusimg() {
                             alt="Our team working"
                             width={600}
                             height={400}
-                            className="rounded-lg h-fit shadow-lg"
+                            className="rounded-lg shadow-lg w-full max-w-lg md:max-w-xl lg:max-w-2xl h-auto object-cover"
                         />
+
                         <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-lg shadow-lg">
                             <div className="flex items-center gap-2 mb-2">
                                 <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
