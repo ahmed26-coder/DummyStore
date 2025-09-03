@@ -8,7 +8,7 @@ import { CreditCard, Truck, Shield, MapPin, User, Mail, Phone, Lock, CheckCircle
 import { useCart } from "@/lib/CartContext"
 import { toast } from "sonner"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -16,11 +16,10 @@ import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { Checkbox } from "@/components/ui/checkbox"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-
+import { sendOrderConfirmation } from "./sendEmail"
 
 export default function CheckoutPage() {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { cart: cartItems, isCartOpen } = useCart();
+    const { cart: cartItems } = useCart()
     const [step, setStep] = useState(1)
     const [formData, setFormData] = useState({
         email: "",
@@ -56,42 +55,49 @@ export default function CheckoutPage() {
             formData.expiryDate.trim() !== "" &&
             formData.cvv.trim() !== "" &&
             formData.saveInfo === true &&
-            formData.newsletter === true 
-        );
-    };
-
+            formData.newsletter === true
+        )
+    }
 
     const shippingCost = 9.99
     const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
     const tax = subtotal * 0.08
     const finalTotal = subtotal + shippingCost + tax
 
-
-
-
-
     const handleInputChange = (field: string, value: string | boolean) => {
         setFormData((prev) => ({ ...prev, [field]: value }))
     }
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-        setTimeout(() => {
-            setStep(4)
-            toast.success("Order placed successfully!", {
-                description: "You will receive a confirmation email shortly.",
-            })
-        }, 2000)
-
         setStep(3)
+
+        const result = await sendOrderConfirmation({
+            email: formData.email,
+            cartItems,
+            total: finalTotal,
+        })
+
+        if (result.success) {
+            setTimeout(() => {
+                setStep(4)
+                toast.success("Order placed successfully!", {
+                    description: "A confirmation email has been sent.",
+                })
+            }, 2000)
+        } else {
+            toast.error("Failed to send confirmation email")
+            setStep(1)
+        }
     }
 
     useEffect(() => {
-        console.log('🛒 Cart Debug Info:');
-        console.log('cartItems:', cartItems);
-        console.log('cartItems type:', typeof cartItems);
-        console.log('cartItems length:', cartItems?.length);
+        console.log('🛒 Cart Debug Info:')
+        console.log('cartItems:', cartItems)
+        console.log('cartItems type:', typeof cartItems)
+        console.log('cartItems length:', cartItems?.length)
     }, [cartItems])
+
     if (cartItems.length === 0 && step < 4) {
         return (
             <div className="container mx-auto px-4 py-16 text-center">
@@ -184,7 +190,6 @@ export default function CheckoutPage() {
             </div>
 
             <div className="grid lg:grid-cols-2 gap-8">
-
                 <div>
                     <form onSubmit={handleSubmit} className="space-y-8">
                         <Card>
@@ -195,7 +200,7 @@ export default function CheckoutPage() {
                                 </CardTitle>
                             </CardHeader>
                             <CardContent className="space-y-4">
-                                <div className=" space-y-2">
+                                <div className="space-y-2">
                                     <Label htmlFor="email">Email Address *</Label>
                                     <Input
                                         id="email"
@@ -228,7 +233,7 @@ export default function CheckoutPage() {
                             </CardHeader>
                             <CardContent className="space-y-4">
                                 <div className="grid md:grid-cols-2 gap-4">
-                                    <div className=" space-y-2">
+                                    <div className="space-y-2">
                                         <Label htmlFor="firstName">First Name *</Label>
                                         <Input
                                             id="firstName"
@@ -238,7 +243,7 @@ export default function CheckoutPage() {
                                             required
                                         />
                                     </div>
-                                    <div className=" space-y-2">
+                                    <div className="space-y-2">
                                         <Label htmlFor="lastName">Last Name *</Label>
                                         <Input
                                             id="lastName"
@@ -249,7 +254,7 @@ export default function CheckoutPage() {
                                         />
                                     </div>
                                 </div>
-                                <div className=" space-y-2">
+                                <div className="space-y-2">
                                     <Label htmlFor="address">Address *</Label>
                                     <Input
                                         id="address"
@@ -260,7 +265,7 @@ export default function CheckoutPage() {
                                     />
                                 </div>
                                 <div className="grid md:grid-cols-3 gap-4">
-                                    <div className=" space-y-2">
+                                    <div className="space-y-2">
                                         <Label htmlFor="city">City *</Label>
                                         <Input
                                             id="city"
@@ -270,7 +275,7 @@ export default function CheckoutPage() {
                                             required
                                         />
                                     </div>
-                                    <div className=" space-y-2">
+                                    <div className="space-y-2">
                                         <Label htmlFor="state">State *</Label>
                                         <Select value={formData.state} onValueChange={(value) => handleInputChange("state", value)}>
                                             <SelectTrigger>
@@ -284,7 +289,7 @@ export default function CheckoutPage() {
                                             </SelectContent>
                                         </Select>
                                     </div>
-                                    <div className=" space-y-2">
+                                    <div className="space-y-2">
                                         <Label htmlFor="zipCode">ZIP Code *</Label>
                                         <Input
                                             id="zipCode"
@@ -295,7 +300,7 @@ export default function CheckoutPage() {
                                         />
                                     </div>
                                 </div>
-                                <div className=" space-y-2">
+                                <div className="space-y-2">
                                     <Label htmlFor="phone">Phone Number</Label>
                                     <Input
                                         id="phone"
@@ -333,7 +338,7 @@ export default function CheckoutPage() {
 
                                 {formData.paymentMethod === "card" && (
                                     <div className="space-y-4 mt-4">
-                                        <div className=" space-y-2">
+                                        <div className="space-y-2">
                                             <Label htmlFor="cardNumber">Card Number *</Label>
                                             <Input
                                                 id="cardNumber"
@@ -343,7 +348,7 @@ export default function CheckoutPage() {
                                                 required
                                             />
                                         </div>
-                                        <div className=" space-y-2">
+                                        <div className="space-y-2">
                                             <Label htmlFor="nameOnCard">Name on Card *</Label>
                                             <Input
                                                 id="nameOnCard"
@@ -354,17 +359,28 @@ export default function CheckoutPage() {
                                             />
                                         </div>
                                         <div className="grid grid-cols-2 gap-4">
-                                            <div className=" space-y-2">
+                                            <div className="space-y-2">
                                                 <Label htmlFor="expiryDate">Expiry Date *</Label>
                                                 <Input
                                                     id="expiryDate"
+                                                    maxLength={5} // MM/YY
                                                     value={formData.expiryDate}
-                                                    onChange={(e) => handleInputChange("expiryDate", e.target.value)}
+                                                    onChange={(e) => {
+                                                        let value = e.target.value.replace(/\D/g, "");
+                                                        if (value.length > 2) {
+                                                            value = value.slice(0, 2) + "/" + value.slice(2, 4);
+                                                        }
+                                                        if (value.length > 5) {
+                                                            value = value.slice(0, 5);
+                                                        }
+                                                        handleInputChange("expiryDate", value);
+                                                    }}
                                                     placeholder="MM/YY"
                                                     required
                                                 />
                                             </div>
-                                            <div>
+
+                                            <div className="space-y-2">
                                                 <Label htmlFor="cvv">CVV *</Label>
                                                 <Input
                                                     id="cvv"
@@ -404,7 +420,6 @@ export default function CheckoutPage() {
                             <CardTitle>Order Summary</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-4">
-
                             <div className="space-y-3">
                                 {cartItems.map((item) => (
                                     <div key={item.id} className="flex items-center gap-3">
@@ -436,7 +451,7 @@ export default function CheckoutPage() {
                             <div className="space-y-2">
                                 <div className="flex justify-between">
                                     <span>Subtotal</span>
-                                    <span>${finalTotal.toFixed(2)}</span>
+                                    <span>${subtotal.toFixed(2)}</span>
                                 </div>
                                 <div className="flex justify-between">
                                     <span>Shipping</span>

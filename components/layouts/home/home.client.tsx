@@ -83,7 +83,7 @@ export default function Homeproduct() {
                 ? Array.from({ length: 5 }).map((_, i) => (
                     <CarouselItem
                       key={i}
-                      className="basis-full sm:basis-1/2 lg:basis-1/4 2xl:basis-1/5"
+                      className="basis-full sm:basis-1/2 lg:basis-1/4 xl:basis-1/5"
                     >
                       <div className="w-full sm:w-[235px] h-[320px] bg-white border border-gray-200 rounded-md p-4 animate-pulse flex flex-col gap-4">
                         <div className="h-[180px] w-full bg-gray-200 rounded-md" />
