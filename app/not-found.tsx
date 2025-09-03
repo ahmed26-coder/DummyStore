@@ -1,9 +1,9 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Home, Search, ShoppingBag, ArrowLeft } from "lucide-react"
-import { Card } from "@/Components/ui/card"
-import { Button } from "@/Components/ui/button"
-import ProductSearch from "@/Components/ProductSearch"
+import { Card } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import ProductSearch from "@/components/ProductSearch"
 
 export default function NotFound() {
   const popularCategories = [

@@ -1,14 +1,15 @@
 import Image from "next/image"
 
 import { Award, Heart, Star, Globe, CheckCircle } from "lucide-react"
-import { Badge } from "@/Components/ui/badge"
-import { Card, CardContent, CardHeader, CardTitle } from "@/Components/ui/card"
-import { Button } from "@/Components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 
 
 import React from 'react'
 import Link from "next/link"
-import { features, stats, team } from "@/constents"
+import { features, team } from "@/constents"
+import StatsSection from "./about-us.client"
 
 export function Aboutustop() {
 
@@ -24,21 +25,7 @@ export function Aboutustop() {
                     <Badge className="bg-white text-pink-600 text-lg px-6 py-2">Powered by ShraraJSON API</Badge>
                 </div>
             </section>
-            <section className="py-16 bg-gray-50">
-                <div className="container max-w-7xl mx-auto px-4">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                        {stats.map((stat, index) => (
-                            <div key={index} className="text-center">
-                                <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <stat.icon className="w-8 h-8 text-blue-600" />
-                                </div>
-                                <h3 className="text-3xl font-bold text-gray-900 mb-2">{stat.value}</h3>
-                                <p className="text-gray-600">{stat.label}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
+            <StatsSection />
         </>
     )
 }

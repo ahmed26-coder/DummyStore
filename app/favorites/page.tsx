@@ -1,4 +1,4 @@
-import FavoritesPage from '@/Components/layouts/favorites/page'
+import FavoritesPage from '@/components/layouts/favorites/page'
 import React from 'react'
 
 export default function page() {

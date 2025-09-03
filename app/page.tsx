@@ -1,4 +1,4 @@
-import Page from "@/Components/layouts/home/page"
+import Page from "@/components/layouts/home/page"
 
 export default function Home() {
   return (

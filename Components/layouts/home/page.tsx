@@ -1,7 +1,7 @@
 import React from 'react'
 import {Homebottom, Hometop} from './home.chunks'
 import Homeproduct from './home.client'
-import { CustomerReviewsMarquee } from '@/Components/customer-reviews-marquee'
+import { CustomerReviewsMarquee } from '@/components/customer-reviews-marquee'
 
 
 export default function Home() {

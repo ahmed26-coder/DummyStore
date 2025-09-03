@@ -1,6 +1,6 @@
 "use client"
 
-import Product from '@/Components/layouts/product/page'
+import Product from '@/components/layouts/product/page'
 import React, { Suspense } from 'react'
 
 export default function page() {

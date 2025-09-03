@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Nav from "@/Components/nav";
-import { Footer } from "@/Components/footer";
+import Nav from "@/components/nav";
+import { Footer } from "@/components/footer";
 import { CartProvider } from "@/lib/CartContext";
 import CartDrawer from "@/lib/CartDrawer";
 import ClientToaster from "@/lib/client-toaster";
-import { FavoriteProvider } from "@/Components/layouts/favorites/favorites.client";
+import { FavoriteProvider } from "@/components/layouts/favorites/favorites.client";
 
 
 const inter = Inter({ subsets: ["latin"] });

@@ -4,8 +4,8 @@ import Image from "next/image"
 import Link from "next/link"
 import { Star, ShoppingCart } from "lucide-react"
 import { toast } from "sonner"
-import { Badge } from "@/Components/ui/badge"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/Components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { useCart } from "./cart-provider"
 
 

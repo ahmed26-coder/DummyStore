@@ -1,6 +1,6 @@
 import React from 'react'
 import { Aboutusfeatures, Aboutusimg, Aboutusteam, Aboutustop, Aboutvalues } from './about-us.chunks'
-import { CustomerReviewsMarquee } from '@/Components/customer-reviews-marquee'
+import { CustomerReviewsMarquee } from '@/components/customer-reviews-marquee'
 
 export default function About() {
   return (

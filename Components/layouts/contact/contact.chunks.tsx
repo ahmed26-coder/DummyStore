@@ -1,6 +1,6 @@
 
-import { Badge } from "@/Components/ui/badge"
-import { Card, CardContent, CardHeader, CardTitle } from "@/Components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { MapPin, Phone, Mail, Clock, Headphones, Shield, Globe } from "lucide-react"
 import { Contactform } from "./contact.client"
 import { contactMethods, departments } from "@/constents"

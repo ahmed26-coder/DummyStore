@@ -2,14 +2,17 @@
 import HeroSlider from '@/lib/heroslider'
 import Link from 'next/link'
 import React from 'react'
+import { Home } from './home.client'
 
 export function Hometop() {
     return (
         <div className=" max-w-7xl mx-auto">
             <HeroSlider />
+            <Home />
         </div>
     )
 }
+
 
 
 export function Homebottom() {

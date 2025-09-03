@@ -1,4 +1,4 @@
-import ProductClient from "@/Components/layouts/product/productid.client";
+import ProductClient from "@/components/layouts/product/productid.client";
 import { CartProvider } from "@/lib/cart-provider";
 
 interface PageProps {

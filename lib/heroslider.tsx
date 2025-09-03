@@ -45,7 +45,7 @@ function HeroSlider() {
                 </Link>
               </div>
               {/* Image */}
-              <div className="mt-6 md:mt-0 flex-1 flex justify-center">
+`              <div className="mt-6 md:mt-0 flex-1 flex justify-center">
                 <Image
                   src="/banner_Hero1.png"
                   alt="slider hero 1"
@@ -54,7 +54,7 @@ function HeroSlider() {
                   priority
                   className="object-contain"
                 />
-              </div>
+              </div>`
             </div>
           </SwiperSlide>
 

@@ -1,12 +1,12 @@
 "use client"
 
-import { useCallback, useEffect, useState } from 'react'
-import Image from 'next/image'
-import { CornerUpRight, HeartIcon, ShoppingCart, Star } from 'lucide-react'
-import { toast } from 'sonner'
-import { useCart } from '@/lib/CartContext'
-import Link from 'next/link'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useCallback, useEffect, useState } from "react"
+import Image from "next/image"
+import { CornerUpRight, HeartIcon, ShoppingCart, Star } from "lucide-react"
+import { toast } from "sonner"
+import { useCart } from "@/lib/CartContext"
+import Link from "next/link"
+import { useRouter, useSearchParams } from "next/navigation"
 import {
   Pagination,
   PaginationContent,
@@ -14,8 +14,17 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from '@/Components/ui/pagination'
-import { useFavorites } from '../favorites/favorites.client'
+} from "@/components/ui/pagination"
+import { useFavorites } from "../favorites/favorites.client"
+
+// ✅ استيراد مكون Select من shadcn
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 type Product = {
   id: number
@@ -32,27 +41,30 @@ type Category = { id: number; name: string }
 export default function ProductGrid() {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const pageParam = Number(searchParams.get('page')) || 1
+  const pageParam = Number(searchParams.get("page")) || 1
   const [currentPage, setCurrentPage] = useState(pageParam)
+
   useEffect(() => {
     const pageFromUrl = Number(searchParams.get("page")) || 1
     setCurrentPage(pageFromUrl)
   }, [searchParams])
+
   const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites()
   const [loading, setLoading] = useState(true)
   const [productsPerPage] = useState(12)
   const [totalProducts, setTotalProducts] = useState(0)
   const [products, setProducts] = useState<Product[]>([])
   const [categories, setCategories] = useState<Category[]>([])
-  const [selectedCategory, setSelectedCategory] = useState('all')
-  const [searchTerm, setSearchTerm] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState("all")
+  const [searchTerm, setSearchTerm] = useState("")
   const { addToCart } = useCart()
+
   const fetchProducts = useCallback(
-    async (category = 'all', limit = 20, skip = 0) => {
+    async (category = "all", limit = 20, skip = 0) => {
       try {
         setLoading(true)
         const url =
-          category === 'all'
+          category === "all"
             ? `https://dummyjson.com/products?limit=${limit}&skip=${skip}`
             : `https://dummyjson.com/products/category/${category}?limit=${limit}&skip=${skip}`
 
@@ -61,13 +73,14 @@ export default function ProductGrid() {
         setProducts(data.products)
         setTotalProducts(data.total || data.products.length)
       } catch (error) {
-        console.error('Error fetching products:', error)
+        console.error("Error fetching products:", error)
       } finally {
         setLoading(false)
       }
     },
     []
   )
+
   const fetchSearchResults = useCallback(async () => {
     if (!searchTerm.trim()) return
     try {
@@ -79,14 +92,15 @@ export default function ProductGrid() {
       setProducts(data.products)
       setTotalProducts(data.total || data.products.length)
     } catch (error) {
-      console.error('Error searching products:', error)
+      console.error("Error searching products:", error)
     } finally {
       setLoading(false)
     }
   }, [searchTerm])
+
   const fetchCategories = async () => {
     try {
-      const res = await fetch('https://dummyjson.com/products/category-list')
+      const res = await fetch("https://dummyjson.com/products/category-list")
       const data = await res.json()
 
       if (Array.isArray(data)) {
@@ -95,13 +109,15 @@ export default function ProductGrid() {
         setCategories([])
       }
     } catch (error) {
-      console.error('Error fetching categories:', error)
+      console.error("Error fetching categories:", error)
       setCategories([])
     }
   }
+
   useEffect(() => {
     fetchCategories()
   }, [])
+
   useEffect(() => {
     if (searchTerm.trim()) {
       fetchSearchResults()
@@ -117,21 +133,25 @@ export default function ProductGrid() {
     fetchSearchResults,
     productsPerPage,
   ])
-  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value
+
+  const handleCategoryChange = (value: string) => {
     setSelectedCategory(value)
     setCurrentPage(1)
     router.push(`?page=1`)
   }
+
   const totalPages =
     productsPerPage > 0 ? Math.ceil(totalProducts / productsPerPage) : 1
+
   const handlePageChange = (page: number) => {
     setCurrentPage(page)
     router.push(`?page=${page}`)
   }
+
   return (
     <div className="p-4 max-w-7xl mx-auto">
       <div className="flex flex-wrap justify-between gap-4 items-center mb-6">
+        {/* البحث */}
         <input
           type="text"
           placeholder="Search products..."
@@ -143,30 +163,36 @@ export default function ProductGrid() {
             router.push(`?page=1`)
           }}
         />
-        <select
-          value={selectedCategory}
-          onChange={handleCategoryChange}
-          className="border px-4 py-2 rounded"
-        >
-          <option value="all">All Categories</option>
-          {categories.map((cat, index) => {
-            const isCategoryObject =
-              typeof cat === 'object' &&
-              cat !== null &&
-              'id' in cat &&
-              'name' in cat
-            const name = isCategoryObject ? cat.name : cat
-            const value = isCategoryObject ? cat.id : cat
 
-            return (
-              <option key={isCategoryObject ? cat.id : index} value={value}>
-                {typeof name === 'string'
-                  ? name.charAt(0).toUpperCase() + name.slice(1)
-                  : 'Unknown'}
-              </option>
-            )
-          })}
-        </select>
+        {/* ✅ الـ Select الخاص بـ shadcn */}
+        <Select value={selectedCategory} onValueChange={handleCategoryChange}>
+          <SelectTrigger className="w-[200px]">
+            <SelectValue placeholder="Select category" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All Categories</SelectItem>
+            {categories.map((cat, index) => {
+              const isCategoryObject =
+                typeof cat === "object" &&
+                cat !== null &&
+                "id" in cat &&
+                "name" in cat
+              const name = isCategoryObject ? cat.name : cat
+              const value = isCategoryObject ? String(cat.id) : String(cat)
+
+              return (
+                <SelectItem
+                  key={isCategoryObject ? cat.id : index}
+                  value={value}
+                >
+                  {typeof name === "string"
+                    ? name.charAt(0).toUpperCase() + name.slice(1)
+                    : "Unknown"}
+                </SelectItem>
+              )
+            })}
+          </SelectContent>
+        </Select>
       </div>
 
       {loading ? (
@@ -187,13 +213,13 @@ export default function ProductGrid() {
       ) : (
         <>
           {/* GRID PRODUCTS */}
-          <div className="grid grid-cols-1 mt-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 mt-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
             {products.length > 0 ? (
               products.map((product) => (
                 <div
                   key={product.id}
                   className="group relative bg-white rounded-md border border-gray-200 
-                  shadow-md p-4 overflow-hidden h-fit transition duration-300
+                  shadow-md p-4 px-2 overflow-hidden h-fit transition duration-300
                   hover:-translate-y-2 hover:shadow-lg hover:border-[#3B82F6]
                   flex flex-col"
                 >

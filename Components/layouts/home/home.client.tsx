@@ -13,16 +13,16 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/Components/ui/carousel"
+} from "@/components/ui/carousel"
 
 const categories = [
   "smartphones",
   "mobile-accessories",
-  "laptops",
-  "tablets",
+  "Vehicle",
   "Tops",
   "sunglasses",
   "sports-accessories",
+  "Groceries",
 ]
 
 export default function Homeproduct() {
@@ -224,5 +224,89 @@ export default function Homeproduct() {
         </div>
       ))}
     </section>
+  )
+}
+
+
+import { useRef } from "react"
+import { Package, Users, TrendingUp } from "lucide-react"
+
+const stats = [
+  { icon: Package, label: "Products Available", value: 194, color: "blue" },
+  { icon: Users, label: "Happy Customers", value: 208, color: "green" },
+  { icon: TrendingUp, label: "Community Posts", value: 251, color: "purple" },
+]
+
+function useCountUp(end: number, duration = 2000, startCounting: boolean) {
+  const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    if (!startCounting) return
+
+    let start = 0
+    const increment = end / (duration / 16)
+    const timer = setInterval(() => {
+      start += increment
+      if (start >= end) {
+        start = end
+        clearInterval(timer)
+      }
+      setCount(Math.floor(start))
+    }, 16)
+
+    return () => clearInterval(timer)
+  }, [end, duration, startCounting])
+
+  return count
+}
+
+export  function Home() {
+  const sectionRef = useRef<HTMLDivElement | null>(null)
+  const [inView, setInView] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setInView(true)
+        }
+      },
+      { threshold: 0.3 }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      if (sectionRef.current) observer.unobserve(sectionRef.current)
+    }
+  }, [])
+
+  return (
+    <div className="p-16" ref={sectionRef}>
+      <div className="container max-w-7xl mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 duration-300">
+          {stats.map((stat, index) => {
+            // eslint-disable-next-line react-hooks/rules-of-hooks
+            const count = useCountUp(stat.value, 2000, inView)
+            return (
+              <div key={index} className="text-center">
+                <div
+                  className={`bg-${stat.color}-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4`}
+                >
+                  <stat.icon className={`w-8 h-8 text-${stat.color}-600`} />
+                </div>
+                <h2 className="text-3xl font-bold text-gray-900">
+                  {count}+{/* دا يخلي العداد يوقف عند الرقم ويضيف + */}
+                </h2>
+                <p className="text-gray-600">{stat.label}</p>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    </div>
   )
 }
