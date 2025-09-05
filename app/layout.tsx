@@ -14,6 +14,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "ShraraStore - Your Ultimate Shopping Destination",
   description: "Discover amazing products powered by ShraraJSON API",
+  icons: {
+    icon:"/icon.png"
+  }
 };
 
 export default function RootLayout({
