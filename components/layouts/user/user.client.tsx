@@ -325,11 +325,9 @@ export default function ProfilePage() {
                                 >
                                     <Package className="w-4 h-4 mr-2" />
                                     Orders
-                                    {cartItems && cartItems.length > 0 && (
-                                        <Badge variant="secondary" className="ml-auto">
-                                            {cartItems.length}
-                                        </Badge>
-                                    )}
+                                    <Badge variant="secondary" className="ml-auto">
+                                        {cartItems ? cartItems.length : 0}
+                                    </Badge>
                                 </Button>
                                 <Button
                                     variant={activeTab === "settings" ? "default" : "ghost"}

@@ -41,21 +41,26 @@ type Category = { id: number; name: string }
 export default function ProductGrid() {
   const router = useRouter()
   const searchParams = useSearchParams()
+
   const pageParam = Number(searchParams.get("page")) || 1
+  const categoryParam = searchParams.get("category") || "all"
+
   const [currentPage, setCurrentPage] = useState(pageParam)
+  const [selectedCategory, setSelectedCategory] = useState(categoryParam)
 
   useEffect(() => {
     const pageFromUrl = Number(searchParams.get("page")) || 1
+    const categoryFromUrl = searchParams.get("category") || "all"
     setCurrentPage(pageFromUrl)
+    setSelectedCategory(categoryFromUrl)
   }, [searchParams])
 
   const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites()
   const [loading, setLoading] = useState(true)
-  const [productsPerPage] = useState(12)
+  const [productsPerPage] = useState(20)
   const [totalProducts, setTotalProducts] = useState(0)
   const [products, setProducts] = useState<Product[]>([])
   const [categories, setCategories] = useState<Category[]>([])
-  const [selectedCategory, setSelectedCategory] = useState("all")
   const [searchTerm, setSearchTerm] = useState("")
   const { addToCart } = useCart()
 
@@ -137,7 +142,7 @@ export default function ProductGrid() {
   const handleCategoryChange = (value: string) => {
     setSelectedCategory(value)
     setCurrentPage(1)
-    router.push(`?page=1`)
+    router.push(`?category=${value}&page=1`)
   }
 
   const totalPages =
@@ -145,11 +150,28 @@ export default function ProductGrid() {
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page)
-    router.push(`?page=${page}`)
+    router.push(`?category=${selectedCategory}&page=${page}`)
   }
 
   return (
     <div className="p-4 max-w-7xl mx-auto">
+      <div className="mb-8 max-w-7xl mt-10 xl:mx-auto mx-5">
+        <h1 className="text-3xl font-bold mb-4">
+          <span>
+            {selectedCategory === "all"
+              ? "All"
+              : selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)}
+          </span>
+          {" "}
+          Products
+        </h1>
+        <p className="text-gray-600">
+          Discover our amazing collection of{" "}
+          {selectedCategory === "all"
+            ? "all products"
+            : `${selectedCategory} products`}
+        </p>
+      </div>
       <div className="flex flex-wrap justify-between gap-4 items-center mb-6">
         {/* البحث */}
         <input
@@ -160,7 +182,7 @@ export default function ProductGrid() {
           onChange={(e) => {
             setSearchTerm(e.target.value)
             setCurrentPage(1)
-            router.push(`?page=1`)
+            router.push(`?category=${selectedCategory}&page=1`)
           }}
         />
 
@@ -196,7 +218,7 @@ export default function ProductGrid() {
       </div>
 
       {loading ? (
-        <div className="flex flex-col  md:flex-wrap gap-4">
+        <div className="flex flex-col md:flex-row md:flex-wrap gap-4">
           {Array.from({ length: 5 }).map((_, i) => (
             <div
               key={i}
@@ -226,7 +248,7 @@ export default function ProductGrid() {
                   {/* صورة المنتج */}
                   <div className="relative h-52 flex items-center justify-center mb-6">
                     <Image
-                      src={product.thumbnail || '/placeholder.svg'}
+                      src={product.thumbnail || "/placeholder.svg"}
                       alt={product.title}
                       width={300}
                       height={200}
@@ -234,7 +256,7 @@ export default function ProductGrid() {
                       className="h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                     />
                     {/* الخصم */}
-                    <span className="absolute top-2 right-2 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded">
+                    <span className="absolute top-1 right-1 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded">
                       -{product.discountPercentage.toFixed(0)}%
                     </span>
                   </div>
@@ -272,7 +294,6 @@ export default function ProductGrid() {
   right-4 lg:right-[-60px] lg:group-hover:right-4 
   transition-all duration-300"
                   >
-
                     {/* Add to Cart */}
                     <span
                       onClick={() => {
@@ -280,7 +301,7 @@ export default function ProductGrid() {
                           id: product.id,
                           title: product.title,
                           price: product.price,
-                          thumbnail: product.thumbnail || '/placeholder.svg',
+                          thumbnail: product.thumbnail || "/placeholder.svg",
                           quantity: 1,
                         })
                         toast.success(`${product.title} added to cart`)
@@ -295,26 +316,32 @@ export default function ProductGrid() {
                     {/* Favorite */}
                     <span
                       onClick={() => {
-                        const productTitle = product.title || "Product";
+                        const productTitle = product.title || "Product"
 
                         if (isFavorite(String(product.id))) {
-                          removeFromFavorites(String(product.id));
-                          toast.error(`${productTitle} removed from favorites❤️`);
+                          removeFromFavorites(String(product.id))
+                          toast.error(
+                            `${productTitle} removed from favorites❤️`
+                          )
                         } else {
                           addToFavorites({
                             id: String(product.id),
                             title: productTitle,
                             price: product.price || 0,
                             thumbnail: product.thumbnail || "/placeholder.svg",
-                          });
-                          toast.success(`${productTitle} added to favorites❤️`);
+                          })
+                          toast.success(
+                            `${productTitle} added to favorites❤️`
+                          )
                         }
                       }}
                       className={`w-10 h-10 rounded-full flex items-center justify-center cursor-pointer transition
     bg-gray-100 hover:bg-gray-300`}
                     >
                       <HeartIcon
-                        className={`w-5 h-5 transition ${isFavorite(String(product.id)) ? "text-red-500" : "text-black"
+                        className={`w-5 h-5 transition ${isFavorite(String(product.id))
+                          ? "text-red-500"
+                          : "text-black"
                           }`}
                       />
                     </span>
@@ -331,7 +358,7 @@ export default function ProductGrid() {
                   </div>
                 </div>
               ))
-            ) : searchTerm.trim() !== '' ? (
+            ) : searchTerm.trim() !== "" ? (
               <div className="w-full flex flex-col self-start col-span-full max-w-xs">
                 <p className="text-red-500 mt-4 text-lg font-medium">
                   No products found matching your search.
@@ -351,7 +378,10 @@ export default function ProductGrid() {
                 <PaginationContent>
                   <PaginationItem>
                     <PaginationPrevious
-                      href={`?page=${Math.max(currentPage - 1, 1)}`}
+                      href={`?category=${selectedCategory}&page=${Math.max(
+                        currentPage - 1,
+                        1
+                      )}`}
                       onClick={(e) => {
                         e.preventDefault()
                         handlePageChange(Math.max(currentPage - 1, 1))
@@ -376,7 +406,7 @@ export default function ProductGrid() {
                         return (
                           <PaginationItem key={page}>
                             <PaginationLink
-                              href={`?page=${page}`}
+                              href={`?category=${selectedCategory}&page=${page}`}
                               isActive={page === currentPage}
                               onClick={(e) => {
                                 e.preventDefault()
@@ -392,10 +422,15 @@ export default function ProductGrid() {
                   })()}
                   <PaginationItem>
                     <PaginationNext
-                      href={`?page=${Math.min(currentPage + 1, totalPages)}`}
+                      href={`?category=${selectedCategory}&page=${Math.min(
+                        currentPage + 1,
+                        totalPages
+                      )}`}
                       onClick={(e) => {
                         e.preventDefault()
-                        handlePageChange(Math.min(currentPage + 1, totalPages))
+                        handlePageChange(
+                          Math.min(currentPage + 1, totalPages)
+                        )
                       }}
                     />
                   </PaginationItem>

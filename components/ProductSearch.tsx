@@ -76,7 +76,7 @@ export default function ProductSearch() {
                   />
                 </div>
                 <div className="p-2">
-                  <h2 className="text-sm font-semibold group-hover:text-purple-600 transition">
+                  <h2 className="text-sm font-semibold line-clamp-1 group-hover:text-purple-600 transition">
                     {product.title}
                   </h2>
                   <p className="text-xs text-gray-500">${product.price}</p>

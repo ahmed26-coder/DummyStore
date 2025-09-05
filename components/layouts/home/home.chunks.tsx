@@ -17,11 +17,11 @@ export function Hometop() {
 
 export function Homebottom() {
     return (
-        <section className="bg-gray-900 text-white py-16">
+        <section className="text-gray-900 py-16">
             <div className="container mx-auto px-4 text-center">
                 <h2 className="text-3xl font-bold mb-4">Ready to Start Shopping?</h2>
-                <p className="text-xl mb-8 text-gray-300">Join thousands of satisfied customers and discover amazing deals</p>
-                <button className="bg-pink-600 py-2 px-6 rounded-md hover:bg-gray-900 border-2 border-pink-600 ">
+                <p className="text-xl mb-8 text-gray-700">Join thousands of satisfied customers and discover amazing deals</p>
+                <button className="bg-pink-600 py-2 px-6 text-white rounded-md hover:bg-pink-500 hover:border-pink-500 border-2 border-pink-600 ">
                     <Link href="/product">Start Shopping</Link>
                 </button>
             </div>
