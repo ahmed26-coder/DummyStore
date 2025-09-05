@@ -75,7 +75,6 @@ export default function CheckoutPage() {
         const result = await sendOrderConfirmation({
             email: formData.email,
             cartItems,
-            total: finalTotal,
         })
 
         if (result.success) {
