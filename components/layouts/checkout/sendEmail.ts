@@ -35,8 +35,9 @@ export async function sendOrderConfirmation({
     <div style="max-width:600px; margin:0 auto; background:#fff; border:1px solid #eee; border-radius:8px; overflow:hidden;">
       
       <!-- Header -->
-      <div style="background:#f4f4f4; padding:16px; text-align:center; border-bottom:1px solid #ddd;">
-        <h2 style="margin:0; color:#222;">🛒 Order Summary</h2>
+      <div style="background:#4f46e5; padding:20px; text-align:center; color:#fff;">
+        <h1 style="margin:0; font-size:22px;">Thank you for your order! 🎉</h1>
+        <p style="margin:5px 0 0; font-size:14px;">Your order has been confirmed</p>
       </div>
 
       <!-- Items -->
